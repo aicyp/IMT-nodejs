@@ -38,6 +38,7 @@
     "upto4": "npm run step4 && npm run upto3",
     "upto5": "npm run step5 && npm run upto4",
     "upto6": "npm run step6 && npm run upto5",
+    "start:graphql": "node graphql/index.js",
     "test:nolint": "npm run upto6",
     "test:oneprocess": "npm run mocha tests/*.test.js",
     "test": "npm run lint && npm run test:nolint"
