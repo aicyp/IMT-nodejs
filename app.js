@@ -27,7 +27,7 @@ app.post('/contacts', (req, res) => {
     func.overwriteListOfContact(data);
   });
   let redirectURL = '/contacts/' + id;
-  res.redirect(redirectURL);
+  res.status(201).location(redirectURL).send(redirectURL);
 });
 app.get('/contacts/:id', (req, res) => func.getContactById(req.params.id, (data) => {
   if (data == null) {
