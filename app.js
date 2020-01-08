@@ -1,15 +1,33 @@
+const func = require('./app_func.js');
 const commander = require('commander');
 const shortid = require('shortid');
 const express = require('express');
-const func = require('./app_func.js');
+const bodyParser = require('body-parser');
 
 const app = express();
 const port = 3000;
 
+// Server configuration
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
 // Définition des routes
 app.get('/', (req, res) => res.send('Hello World!'));
-app.get('/health', (req, res) => res.status(204).send('204 No Content'));
-app.get('/contacts', (req, res) => res.send());
+app.get('/health', (req, res) => res.status(204).send());
+app.get('/contacts', (req, res) => {
+  func.getListOfContact((data) => res.send(data));
+});
+app.post('/contacts', (req, res) => {
+  func.getListOfContact((data) => {
+    let item = { "id":shortid.generate(), "lastName":req.query.lastName, "firstName":req.query.firstName};
+    data.push(item);
+    func.overwriteListOfContact(data);
+  });
+  res.send('New contact created');
+});
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 // Définition des commandes
