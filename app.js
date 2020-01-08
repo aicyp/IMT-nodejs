@@ -2,7 +2,7 @@ const contactFile = process.env.npm_package_config_contacts;
 const fs = require('fs');
 const commander = require('commander');
 
-commander.command('list').description('output a list of contact').action(function () {
+commander.command('list').description('output a list of contact').action(() => {
   let contactList = [];
 
   fs.readFile(contactFile, 'utf8', (err, data) => {
@@ -16,3 +16,5 @@ commander.command('list').description('output a list of contact').action(functio
 });
 
 commander.parse(process.argv);
+
+if (process.argv.length < 3) commander.help();
