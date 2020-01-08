@@ -22,7 +22,7 @@ app.get('/contacts', (req, res) => {
 app.post('/contacts', (req, res) => {
   let id = shortid.generate();
   func.getListOfContact((data) => {
-    let item = { "id":id, "lastName":req.query.lastName, "firstName":req.query.firstName};
+    let item = { "id":id, "lastName":req.body.lastName, "firstName":req.body.firstName};
     data.push(item);
     func.overwriteListOfContact(data);
   });
@@ -80,4 +80,4 @@ commander
   });
 
 commander.parse(process.argv);
-// if (process.argv.length < 3) commander.help();
+if (process.argv.length < 3) commander.help();
