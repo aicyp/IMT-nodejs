@@ -24,16 +24,16 @@ const contacts = [
   }
 ];
 
-/* const resolvers = {
-  Mutation: {
-
-  },
+const resolvers = {
+  /* Mutation: {
+    ""
+  }, */
   Query: {
     getContacts: () => contacts
   }
-} */
+}
 
-const server = new ApolloServer({ typeDefs });
+const server = new ApolloServer({ typeDefs, resolvers });
 
 server.listen().then(({ url }) => {
   console.log(`Server ready at url ${url}`);
