@@ -27,6 +27,15 @@ app.post('/contacts', (req, res) => {
   });
   res.send('New contact created');
 });
+app.get('/contacts/:id', (req, res) => {
+  func.getContactById(req.params.id, (data) => {
+    if (data.length < 1) {
+      res.status(204).send()
+    } else {
+      res.send(data)
+    }
+  });
+});
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
