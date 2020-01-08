@@ -48,6 +48,7 @@
     "contacts": "./contacts.json"
   },
   "dependencies": {
+    "apollo-server": "^2.9.15",
     "body-parser": "^1.18.3",
     "commander": "^2.20.0",
     "denodeify": "^1.2.1",
