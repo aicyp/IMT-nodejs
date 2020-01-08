@@ -30,6 +30,23 @@ const resolvers = {
       contacts.push(contact);
       return contact;
     },
+    updateContact: (_, { contact }) => {
+      let result;
+      contacts.forEach((c) => {
+        if (c.id === contact.id) {
+          result = merge(c, contact);
+        }
+      });
+      if (!result) {
+        result = contact;
+        contacts.push(contact);
+      }
+      return result;
+    },
+    deleteContact: (_, { id }) => {
+      remove(contacts, { id });
+      return id;
+    },
   },
   Query: {
     getContacts: () => contacts

@@ -19,6 +19,8 @@ const typeDefs = gql`
 
   type Mutation {
     addContact(contact: ContactInput): Contact
+    deleteContact(id: String): String
+    updateContact(contact: ContactInput): Contact
   }
 `;
 
