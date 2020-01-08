@@ -23,7 +23,7 @@ function overwriteListOfContact(data) {
 
 // returns a contact depending on the id
 function getContactById(id, callback) {
-  getListOfContact((data) => callback(data.filter(contact => contact.id === id)))
+  getListOfContact((data) => callback(data.filter(contact => contact.id === id)));
 }
 
 module.exports = {

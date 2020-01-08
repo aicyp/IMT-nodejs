@@ -20,22 +20,22 @@ app.get('/contacts', (req, res) => {
   func.getListOfContact((data) => res.send(data));
 });
 app.post('/contacts', (req, res) => {
+  let id = shortid.generate();
   func.getListOfContact((data) => {
-    let item = { "id":shortid.generate(), "lastName":req.query.lastName, "firstName":req.query.firstName};
+    let item = { "id":id, "lastName":req.query.lastName, "firstName":req.query.firstName};
     data.push(item);
     func.overwriteListOfContact(data);
   });
-  res.send('New contact created');
+  let redirectURL = '/contacts/' + id;
+  res.redirect(redirectURL);
 });
-app.get('/contacts/:id', (req, res) => {
-  func.getContactById(req.params.id, (data) => {
-    if (data.length < 1) {
-      res.status(204).send()
-    } else {
-      res.send(data)
-    }
-  });
-});
+app.get('/contacts/:id', (req, res) => func.getContactById(req.params.id, (data) => {
+  if (data.length < 1) {
+    res.status(404).send()
+  } else {
+    res.send(data)
+  }
+}));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
