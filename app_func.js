@@ -26,6 +26,20 @@ function getContactById(id, callback) {
   getListOfContact((data) => callback(data.filter(contact => contact.id === id)));
 }
 
+// removes a contact depending on the id
+function removeContactById(id, callback) {
+  getListOfContact((data) => {
+    let newContactList = data.filter(contact => contact.id !== id);
+    if (newContactList.length < data.length) {
+      overwriteListOfContact(data.filter(contact => contact.id !== id));
+      callback(1);
+    } else {
+      callback(2);
+    }
+    
+  });
+}
+
 module.exports = {
-  getListOfContact, overwriteListOfContact, getContactById
+  getListOfContact, overwriteListOfContact, getContactById, removeContactById
 }

@@ -31,9 +31,16 @@ app.post('/contacts', (req, res) => {
 });
 app.get('/contacts/:id', (req, res) => func.getContactById(req.params.id, (data) => {
   if (data.length < 1) {
-    res.status(404).send()
+    res.status(404).send();
   } else {
-    res.send(data)
+    res.send(data);
+  }
+}));
+app.delete('/contacts/:id', (req, res) => func.removeContactById(req.params.id, (data) => {
+  if (data === 1) {
+    res.status(204).send();
+  } else {
+    res.status(404).send();
   }
 }));
 
