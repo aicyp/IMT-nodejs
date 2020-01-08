@@ -7,8 +7,18 @@ const typeDefs = gql`
     lastName: String
   }
 
+  input ContactInput {
+    id: String!
+    firstName: String
+    lastName: String
+  }
+
   type Query {
     getContacts: [Contact]
+  }
+
+  type Mutation {
+    addContact(contact: ContactInput): Contact
   }
 `;
 

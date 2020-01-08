@@ -25,9 +25,12 @@ const contacts = [
 ];
 
 const resolvers = {
-  /* Mutation: {
-    ""
-  }, */
+  Mutation: {
+    addContact: (_, { contact }) => {
+      contacts.push(contact);
+      return contact;
+    },
+  },
   Query: {
     getContacts: () => contacts
   }
