@@ -30,7 +30,7 @@ app.post('/contacts', (req, res) => {
   res.redirect(redirectURL);
 });
 app.get('/contacts/:id', (req, res) => func.getContactById(req.params.id, (data) => {
-  if (data.length < 1) {
+  if (data == null) {
     res.status(404).send();
   } else {
     res.send(data);
@@ -44,9 +44,12 @@ app.delete('/contacts/:id', (req, res) => func.removeContactById(req.params.id, 
   }
 }));
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
-
 // Définition des commandes
+commander
+  .command('serve')
+  .description('starts a server on wich we can do some actions')
+  .action(() => app.listen(port, () => console.log(`port: ${port}`)));
+
 commander
   .command('list')
   .description('output a list of contact')
