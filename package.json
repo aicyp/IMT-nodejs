@@ -50,7 +50,7 @@
     "body-parser": "^1.18.3",
     "commander": "^2.20.0",
     "denodeify": "^1.2.1",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "lodash": "^4.17.15",
     "request": "^2.88.0",
     "serve-static": "^1.13.2",
